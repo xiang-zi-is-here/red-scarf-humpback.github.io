@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>RED新人手册 · 星际启航指南</title>
+    <!-- 引入现代字体与图标库 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, sans-serif;
+            background: linear-gradient(145deg, #eef2f7 0%, #d9e0e8 100%);
+            padding: 2rem 1.5rem;
+            line-height: 1.5;
+            color: #1a2c3e;
+        }
+
+        /* 主容器 - 玻璃质感卡片 */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(0px);
+            border-radius: 2rem;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        /* 装饰性顶部条 */
+        .hero-accent {
+            height: 6px;
+            background: linear-gradient(90deg, #c52a1f, #e07a5f, #c52a1f);
+            width: 100%;
+        }
+
+        /* 内边距优化 */
+        .content-padding {
+            padding: 2rem 2.2rem 2.5rem;
+        }
+
+        /* Logo 区域 */
+        .logo-area {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .logo-area img {
+            width: 110px;
+            height: 110px;
+            object-fit: contain;
+            filter: drop-shadow(0 8px 12px rgba(0,0,0,0.1));
+            transition: transform 0.2s;
+            border-radius: 32px;
+            background: #fef3e8;
+            padding: 0.5rem;
+        }
+        .logo-area img:hover {
+            transform: scale(1.02);
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            text-align: center;
+            background: linear-gradient(135deg, #b32d1a, #7f2a1d);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.3px;
+            margin-top: 0.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subhead {
+            text-align: center;
+            color: #5d6f83;
+            border-bottom: 2px solid #f0e2d4;
+            display: inline-block;
+            width: auto;
+            margin: 0 auto 1rem auto;
+            padding-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        /* 章节标题 */
+        h2 {
+            font-size: 1.7rem;
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 1.2rem;
+            padding-left: 0.75rem;
+            border-left: 5px solid #c0392b;
+            color: #1e2f3f;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        h2 i {
+            color: #c0392b;
+            font-size: 1.5rem;
+        }
+
+        /* 段落样式 - 取消首行缩进，现代风格 */
+        p {
+            margin-bottom: 1rem;
+            color: #2c3e44;
+            font-weight: 400;
+            text-indent: 0;
+        }
+
+        /* 步骤卡片 */
+        .step {
+            background: #ffffff;
+            border-radius: 1.25rem;
+            margin: 1.25rem 0;
+            padding: 1.25rem 1.5rem;
+            box-shadow: 0 5px 14px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.05);
+            border: 1px solid #f0e9e4;
+            transition: all 0.2s;
+        }
+        .step:hover {
+            border-color: #f0cfc4;
+            box-shadow: 0 12px 20px -12px rgba(192, 57, 43, 0.15);
+            transform: translateY(-2px);
+        }
+        .step p strong {
+            color: #b13b2c;
+            font-weight: 700;
+        }
+        .step strong {
+            color: #c4452f;
+        }
+        .step ul {
+            margin: 0.75rem 0 0.5rem 1.5rem;
+        }
+        .step li {
+            margin: 0.5rem 0;
+        }
+
+        /* 图片美化 */
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 1rem;
+            margin: 1rem 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            border: 1px solid #f0e2da;
+            background: #fefaf7;
+            display: block;
+            transition: 0.2s;
+        }
+        img:hover {
+            box-shadow: 0 10px 18px rgba(0, 0, 0, 0.08);
+        }
+
+        /* 按钮组样式 (下载区域) */
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.25rem 0 0.5rem;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(105deg, #2c3e50 0%, #1f2f3c 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 60px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.25s;
+            border: none;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .btn i {
+            font-size: 1.1rem;
+        }
+        .btn:hover {
+            background: linear-gradient(105deg, #a93422, #c0392b);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(192, 57, 43, 0.3);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #c0392b;
+            color: #c0392b;
+            box-shadow: none;
+        }
+        .btn-outline:hover {
+            background: #c0392b;
+            color: white;
+        }
+
+        /* 链接普通内嵌样式（除了按钮区域外的链接） */
+        a:not(.btn) {
+            color: #c0392b;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dashed #e2bcaf;
+            transition: 0.2s;
+        }
+        a:not(.btn):hover {
+            color: #91291c;
+            border-bottom-color: #c0392b;
+        }
+
+        /* 列表优化 */
+        ul, .step ul {
+            padding-left: 1.25rem;
+            list-style-type: none;
+        }
+        .step li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .step li::before {
+            content: "▹";
+            color: #c0392b;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* 特殊高亮 */
+        .note {
+            background: #fef1e6;
+            border-left: 4px solid #e67e22;
+            padding: 0.8rem 1rem;
+            border-radius: 1rem;
+            margin: 1rem 0;
+        }
+
+        /* 响应式 */
+        @media (max-width: 700px) {
+            body {
+                padding: 1rem;
+            }
+            .content-padding {
+                padding: 1.5rem;
+            }
+            h1 {
+                font-size: 1.9rem;
+            }
+            h2 {
+                font-size: 1.4rem;
+            }
+            .button-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .btn {
+                justify-content: center;
+            }
+        }
+
+        /* 修饰分割线 */
+        .divider-light {
+            height: 1px;
+            background: radial-gradient(circle, #ddd, transparent);
+            margin: 1.2rem 0;
+        }
+
+        /* 额外小标志 */
+        .badge-icon {
+            background: #f0e2da;
+            border-radius: 40px;
+            padding: 0.2rem 0.7rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #a13322;
+            display: inline-block;
+            margin-right: 0.5rem;
+        }
+
+        footer {
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #7c8f9b;
+            border-top: 1px solid #ede3db;
+            padding-top: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="hero-accent"></div>
+    <div class="content-padding">
+        <!-- Logo & 标题 -->
+        <div class="logo-area">
+            <img src="http://115.175.75.115/img/1.png" width="200" height="200" alt="RED军团徽章">
+        </div>
+        <h1>RED新人手册</h1>
+        <div style="text-align: center; margin-bottom: 1.5rem;">
+            <span class="badge-icon"><i class="fas fa-rocket"></i> 新伊甸启程</span>
+            <span class="badge-icon"><i class="fas fa-users"></i> by:红领鲸</span>
+        </div>
+
+        <!-- 前言 -->
+        <h2><i class="fas fa-book-open"></i> 前言</h2>
+        <p>欢迎来到<span style="font-weight: 600; color:#c0392b;"> RED 军团</span>，新伊甸的星海征途因你而更精彩。这份手册将引领你完成从下载客户端到军团融入的全部流程，愿炮火与荣光与你同行。</p>
+
+        <!-- 游戏下载安装 -->
+        <h2><i class="fas fa-download"></i> 游戏下载安装</h2>
+        <p>点击下方按钮，下载官方启动器（推荐纯英文安装路径）：</p>
+        <div class="button-group">
+            <a class="btn" href="https://launcher.ccpgames.com/eve-online/release/win32/x64/eve-online-latest+Setup.exe" target="_blank" rel="noopener noreferrer"><i class="fab fa-windows"></i> Windows客户端</a>
+            <a class="btn" href="https://launcher.ccpgames.com/eve-online/release/darwin/universal/eve-online-latest-universal.dmg" target="_blank" rel="noopener noreferrer"><i class="fab fa-apple"></i> macOS客户端</a>
+        </div>
+        <p>下载完成后运行安装程序，跟随指引安装即可。</p>
+
+        <!-- 游戏安装 详细步骤 -->
+        <h2><i class="fas fa-cogs"></i> 游戏安装</h2>
+        <div class="step">
+            <p><strong><i class="fas fa-folder-open"></i> 第一步：</strong> 双击安装包，选择安装目录 <span style="background:#f0e2da; padding:0 6px; border-radius:12px;">⚠️ 必须为纯英文路径</span>（例如 D:\EVE\）。</p>
+            <img src="http://115.175.75.115/img/4.png" alt="选择安装路径示意">
+        </div>
+        <div class="step">
+            <p><strong><i class="fas fa-sliders-h"></i> 第二步：</strong> 启动器右上角「设置」中勾选 <strong>“下载完整客户端”</strong>，保证全部资源预载。</p>
+            <img src="http://115.175.75.115/img/5.png" alt="设置完整客户端截图1">
+            <img src="http://115.175.75.115/img/6.png" alt="设置完整客户端截图2">
+        </div>
+        <div class="step">
+            <p><strong><i class="fas fa-id-card"></i> 第三步：</strong> 填写注册信息（邮箱、账号、密码）</p>
+            <ul>
+                <li>常用电子邮箱</li>
+                <li>游戏账号</li>
+                <li>高强度密码</li>
+            </ul>
+            <img src="http://115.175.75.115/img/7.png" alt="注册界面示例">
+            <div class="note">
+                <i class="fas fa-envelope"></i> <strong>注意：</strong> CCP 会发送验证邮件到注册邮箱，请务必点击邮件中的确认链接完成验证。
+            </div>
+            <img src="http://115.175.75.115/img/8.png" alt="邮箱确认示意图">
+        </div>
+
+        <!-- 创建角色 -->
+        <h2><i class="fas fa-user-astronaut"></i> 创建角色</h2>
+        <div class="step">
+            <p><strong><i class="fas fa-play-circle"></i> 第一步：</strong> 打开游戏启动器并登录，进入游戏界面。</p>
+            <img src="http://115.175.75.115/img/9.png" alt="游戏启动界面">
+        </div>
+        <div class="step">
+            <p><strong><i class="fas fa-plus-circle"></i> 第二步：</strong> 点击「创建角色」按钮，开启你的舰长生涯。</p>
+            <img src="http://115.175.75.115/img/10.png" alt="创建角色按钮">
+        </div>
+        <div class="step">
+            <p><strong><i class="fas fa-globe-americas"></i> 第三步：</strong> 初始化角色 — <span style="background:#ffe2d4; padding:2px 8px; border-radius:16px;">推荐选择 <strong>加达里</strong> 种族</span>（出生点距离贸易中心最近，新手期极为便利）。</p>
+            <img src="http://115.175.75.115/img/11.png" alt="种族选择界面">
+        </div>
+
+        <!-- 加入军团 -->
+        <h2><i class="fas fa-handshake"></i> 加入军团</h2>
+        <div class="step">
+            <p><strong><i class="fas fa-search"></i> 第一步：</strong> 打开游戏左侧面板。</p>
+            <img src="http://115.175.75.115/img/13.png" alt="搜索面板">
+        </div>
+        <div class="step">
+            <p><strong><i class="fas fa-tag"></i> 第二步：</strong> 在搜索框输入 <strong>“Red Scarf Humpback”</strong>，找到 RED 相关军团，点击查看详情。</p>
+            <img src="http://115.175.75.115/img/14.png" alt="军团搜索结果">
+        </div>
+        <div class="step">
+            <p><strong><i class="fas fa-pen-alt"></i> 第三步：</strong> 点击「申请加入」</p>
+            <img src="http://115.175.75.115/img/15.png" alt="申请加入军团">
+        </div>
+
+        <!-- 联系管理员 -->
+        <h2><i class="fas fa-headset"></i> 联系管理员</h2>
+        <p>提交军团申请后，请耐心等待。联系军团管理加速审核，后续将为你分配新手指引教官。</p>
+        <div class="note">
+            <i class="fas fa-comment-dots"></i> 提示：加入军团后即可享受驻地福利、集结补损和新人成长礼包。
+        </div>
+
+        <!-- 联盟Seat绑定 -->
+        <h2><i class="fas fa-link"></i> 联盟Seat绑定</h2>
+        <p>成功加入军团后，为了获取联盟服务和SRP（战损补偿），请按以下步骤绑定 Seat 系统：</p>
+        <div class="step">
+            <p><strong><i class="fas fa-sign-in-alt"></i> 第一步：</strong> 访问联盟 Seat 门户</p>
+            <a class="btn btn-outline" href="https://seat.winterco.org/home" target="_blank" rel="noopener noreferrer" style="margin-top: 6px; display: inline-flex;"><i class="fas fa-external-link-alt"></i> 登入地址 Seat</a>
+        </div>
+        <div class="step">
+            <p><strong><i class="fas fa-user-check"></i> 第二步：</strong> 使用你的<strong>游戏角色名称</strong>登录 Seat 。</p>
+            <img src="http://115.175.75.115/img/17.png" alt="seat登录界面">
+            <img src="http://115.175.75.115/img/18.png" alt="seat授权页面">
+            <img src="http://115.175.75.115/img/16.png" alt="seat角色面板">
+        </div>
+        <div class="step">
+            <p><strong><i class="fab fa-qq"></i> 第三步：</strong> 在 Seat 个人中心绑定你的 QQ 号，便于接收通知及联盟集结。</p>
+            <img src="http://115.175.75.115/img/19.png" alt="QQ绑定界面">
+        </div>
+        <div class="step">
+            <p><strong><i class="fas fa-user-edit"></i> 第四步：</strong> 为你的 Seat 账号设置昵称（点击右上角头像 → 个人资料 → 编辑昵称）。</p>
+            <img src="http://115.175.75.115/img/20.png" alt="头像菜单">
+            <img src="http://115.175.75.115/img/21.png" alt="设置昵称">
+        </div>
+
+        <!-- 额外提示区 -->
+        <div class="divider-light"></div>
+        <h2><i class="fas fa-life-ring"></i> 联系我们 & 支援通道</h2>
+        <p>如果在安装、注册或绑定过程中遇到任何问题，请通过以下方式联系军团管理团队：</p>
+        <ul style="margin-bottom: 1rem;">
+            <li><a href="https://qm.qq.com/q/ZmNVv9EYWm">"<i class="fab fa-qq" style="color:#c0392b;"></i> <strong>新兵接待QQ群</strong>”</a></li>
+<!--			<li>"<a href="#" <strong>回到主页</strong>”</a></li>-->
+        </ul>
+        <div class="note">
+            <i class="fas fa-shield-alt"></i> <strong>安全提醒</strong>：管理员不会索要账号密码及财产，任何可疑链接切勿点击，保护好你的账户。
+        </div>
+
+        <footer>
+            <i class="fas fa-star-of-life"></i> RED 新伊甸指挥部 · 荣耀与共  <i class="fas fa-star-of-life"></i><br>
+            版本: 2025 启航手册 | 保持联络，一路顺风
+        </footer>
+</div>
+</body>
+</html>
